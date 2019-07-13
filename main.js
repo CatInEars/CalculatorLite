@@ -99,9 +99,15 @@ $('.backspace').click(function() {
     }
     let inputValue = $('.input-field').val();
     inputValue = inputValue.split('');
+
     let help   = inputValue.length - 1;
     inputValue = inputValue.splice(0, help);
     inputValue = inputValue.join('');
+
+    if(inputValue[inputValue.length-1] == '*' || inputValue[inputValue.length-1] == '/' || inputValue[inputValue.length-1] == '-' || inputValue[inputValue.length-1] == '+') {
+        console.log('in');
+        operated = true;
+    }
 
     $('.input-field').val(`${inputValue}`);
 }); // end click

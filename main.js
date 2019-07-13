@@ -19,8 +19,14 @@ $('.num').click(function() {
 }); // end click
 
 $('.operation').click(function() {
-    let inputValue = $('.input-field').val(),
-        thisOper   = $(this).text();
+    let inputValue    = $('.input-field').val(),
+        thisOper      = $(this).text(),
+        inputValueArr = inputValue.split('');
+        zeroed        = false;
+
+    if(inputValueArr.length == 0) {
+        return
+    }
 
     if(!operated) {
         doted    = false;

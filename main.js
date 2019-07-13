@@ -1,12 +1,19 @@
 $(document).ready(function() {
 
 let doted    = false,
-    operated = false;
+    operated = false,
+    zeroed   = false;
 
 $('.num').click(function() {
-    operated = false;
     let inputValue = $('.input-field').val(),
         thisNum    = $(this).text();
+
+    if(zeroed) {
+        zeroed = false;
+        $('.input-field').val(`${thisNum}`);
+        return
+    }
+    operated = false;
 
     $('.input-field').val(`${inputValue}${thisNum}`);
 }); // end click
@@ -30,6 +37,22 @@ $('.operation').click(function() {
     }
 }); // end click
 
+$('.zero').click(function() {
+    let inputLength = $('.input-field').val();
+    inputLength     = inputLength.split('');
+
+    if(inputLength[0] == 0 && inputLength.length == 1) {
+        return
+    }else if(inputLength.length == 0){
+        zeroed = true;
+        $('.input-field').val('0');
+    }else {
+        let inputValue = $('.input-field').val();
+
+        $('.input-field').val(`${inputValue}0`);
+    }
+}); // end click
+
 $('.result').click(function() {
     try{
         let result = eval($('.input-field').val());
@@ -38,6 +61,8 @@ $('.result').click(function() {
             alert('Error');
             $('.clear').click();
             return
+        }else if(result == 0) {
+            zeroed = true;
         }
         $('.input-field').val(result);
         if(!(isInteger(result))) {
@@ -50,7 +75,8 @@ $('.result').click(function() {
 
 $('.clear').click(function() {
     $('.input-field').val('');
-    doted = false;
+    doted  = false;
+    zeroed = false;
 }); // end click
 
 $('.dot').click(function() {

@@ -64,6 +64,22 @@ $('.dot').click(function() {
     }
 }); // end click
 
+$('.backspace').click(function() {
+    if(operated) {
+        operated = false
+    }
+    if(doted) {
+        doted = false;
+    }
+    let inputValue = $('.input-field').val();
+    inputValue = inputValue.split('');
+    let help   = inputValue.length - 1;
+    inputValue = inputValue.splice(0, help);
+    inputValue = inputValue.join('');
+
+    $('.input-field').val(`${inputValue}`);
+}); // end click
+
 
 function isInteger(num) {
   return (num ^ 0) === num;

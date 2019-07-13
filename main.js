@@ -83,6 +83,7 @@ $('.dot').click(function() {
     if(!doted) {
         operated = false;
         doted = true;
+        zeroed = false;
         let inputValue = $('.input-field').val(),
             dot        = $(this).text();
 

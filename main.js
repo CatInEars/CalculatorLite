@@ -126,6 +126,9 @@ $('.backspace').click(function() {
     if(doted) {
         doted = false;
     }
+    if(minused) {
+        minused = false;
+    }
     let inputValue = $('.input-field').val();
     inputValue = inputValue.split('');
 
@@ -133,10 +136,13 @@ $('.backspace').click(function() {
     inputValue = inputValue.splice(0, help);
     inputValue = inputValue.join('');
 
-    if(inputValue[inputValue.length-1] == '*' || inputValue[inputValue.length-1] == '/' || inputValue[inputValue.length-1] == '-' || inputValue[inputValue.length-1] == '+') {
-        console.log('in');
+    if(inputValue[inputValue.length-1] == '*' || inputValue[inputValue.length-1] == '/' || inputValue[inputValue.length-1] == '+') {
         operated = true;
-    }else if(inputValue[inputValue.length-1] == '.')
+    }else if(inputValue[inputValue.length-1] == '-') {
+        minused = true;
+    }else if(inputValue[inputValue.length-1] == '.') {
+        doted = true;
+    }
 
     $('.input-field').val(`${inputValue}`);
 }); // end click

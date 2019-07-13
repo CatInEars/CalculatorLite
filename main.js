@@ -2,11 +2,13 @@ $(document).ready(function() {
 
 let doted    = false,
     operated = false,
-    zeroed   = false;
+    zeroed   = false,
+    minused  = false;
 
 $('.num').click(function() {
     let inputValue = $('.input-field').val(),
         thisNum    = $(this).text();
+        minused    = false;
 
     if(zeroed) {
         zeroed = false;
@@ -23,6 +25,7 @@ $('.operation').click(function() {
         thisOper      = $(this).text(),
         inputValueArr = inputValue.split('');
         zeroed        = false;
+        minused       = false;
 
     if(inputValueArr.length == 0) {
         return
@@ -40,6 +43,19 @@ $('.operation').click(function() {
         inputValue = inputValue.join('');
 
         $('.input-field').val(`${inputValue}${thisOper}`);
+    }
+}); // end click
+
+$('.minus').click(function() {
+    let inputValue = $('.input-field').val();
+    inputValue = inputValue.split('')
+    if(!minused && inputValue[inputValue.length - 1] != '-') {
+        inputValue = inputValue.join('');
+        $('.input-field').val(`${inputValue}-`);
+        minused = true;
+        if(!operated) {
+            operated = true;
+        }
     }
 }); // end click
 
@@ -69,8 +85,11 @@ $('.result').click(function() {
             return
         }else if(result == 0) {
             zeroed = true;
+        }else {
+            doted = false;
         }
         $('.input-field').val(result);
+        minused = false;
         if(!(isInteger(result))) {
             doted = true;
         }
@@ -83,13 +102,15 @@ $('.clear').click(function() {
     $('.input-field').val('');
     doted  = false;
     zeroed = false;
+    minused = false;
 }); // end click
 
 $('.dot').click(function() {
     if(!doted) {
         operated = false;
-        doted = true;
-        zeroed = false;
+        doted    = true;
+        zeroed   = false;
+        minused  = false;
         let inputValue = $('.input-field').val(),
             dot        = $(this).text();
 
@@ -114,7 +135,7 @@ $('.backspace').click(function() {
     if(inputValue[inputValue.length-1] == '*' || inputValue[inputValue.length-1] == '/' || inputValue[inputValue.length-1] == '-' || inputValue[inputValue.length-1] == '+') {
         console.log('in');
         operated = true;
-    }
+    }else if(inputValue[inputValue.length-1] == '.')
 
     $('.input-field').val(`${inputValue}`);
 }); // end click

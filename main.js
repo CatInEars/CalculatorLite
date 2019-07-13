@@ -21,6 +21,7 @@ $('.num').click(function() {
 }); // end click
 
 $('.operation').click(function() {
+    if(minused) return
     let inputValue    = $('.input-field').val(),
         thisOper      = $(this).text(),
         inputValueArr = inputValue.split('');

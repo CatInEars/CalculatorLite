@@ -73,7 +73,7 @@ $('.operation').click(function() {
 $('.minus').click(function() {
     let inputValue = $('.input-field').val();
     inputValue = inputValue.split('');
-
+    zeroed = false;
     if(inputValue[inputValue.length - 1] == '.') {
         let help   = inputValue.length - 1;
         inputValue = inputValue.splice(0, help);

@@ -59,6 +59,7 @@ $('.operation').click(function() {
         let help   = inputValue.length - 1;
         inputValue = inputValue.splice(0, help);
         inputValue = inputValue.join('');
+        doted = false;
 
         $('.input-field').val(`${inputValue}${thisOper}`);
     }

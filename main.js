@@ -122,7 +122,7 @@ $('.result').click(function() {
         }else {
             doted = false;
         }
-        $('.input-field').val(result);
+        $('.input-field').val(+result.toFixed(10));
         minused = false;
         if(!(isInteger(result))) {
             doted = true;
